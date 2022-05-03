@@ -8,10 +8,14 @@ import matplotlib.pyplot as plt
 import scipy
 from scipy.io import wavfile
 
-st.title('hello world')
+st.title('Sound ID Demo')
 
 # Load the model.
-model = hub.load('https://tfhub.dev/google/yamnet/1')
+@st.cache
+def load_model():
+	  return hub.load('https://tfhub.dev/google/yamnet/1')
+
+model = load_model()
 
 process = False
 
@@ -48,7 +52,9 @@ def process_audio(wave_data):
     infered_class = class_names[scores_np.mean(axis=0).argmax()]
     return waveform, infered_class
 
-uploaded_file = st.file_uploader("upload a wav file", type='wav')
+uploaded_file = st.sidebar.file_uploader("Upload a .wav file to get started.", type='wav')
+st.sidebar.write("or")
+
 
 if uploaded_file is not None:
     with st.expander("file info"):
@@ -60,6 +66,7 @@ if uploaded_file is not None:
         st.write(f'Total duration: {duration:.2f}s')
         st.write(f'Size of the input: {len(wav_data)}')
     process = st.button("analyze audio")
+else: st.write("<<< Please select some audio to process.")
 
 if process == True:
     with st.spinner("processing"):
@@ -94,6 +101,4 @@ if process == True:
         _ = plt.ylim(-0.5 + np.array([top_n, 0]))
 
         st.pyplot(viz)
-
         
-    st.success("all done!")  

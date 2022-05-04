@@ -9,7 +9,6 @@ from scipy import signal
 from scipy.io import wavfile
 
 from streamlit_webrtc import webrtc_streamer, WebRtcMode
-import soundfile as sf
 import queue
 from pathlib import Path
 import time

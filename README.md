@@ -3,10 +3,14 @@
 ## local dev
 
 ### install
-`cd yamnet-st`
-`python3 -m venv venv`
-`source venv/bin/activate`
-`pip install -r requirements.txt`
+```
+cd yamnet-st
+python3 -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+```
 
 ### develop
-`streamlit run app.py`
+```
+streamlit run app.py
+```

@@ -170,7 +170,7 @@ if process == True:
         infered_class = class_names[scores_np.mean(axis=0).argmax()]
         st.markdown(f'The main sound detected is: **{infered_class}**.')
         st.write("Here's some diagnostics and a timeline of all sounds detected.")
-        st.markdown("**[REFRESH](/)** the page to try again.")
+        st.markdown("**[REFRESH]("")** the page to try again.")
 
         viz = plt.figure(figsize=(10, 6))
         plt.subplot(3,1,1)

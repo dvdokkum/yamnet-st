@@ -80,7 +80,7 @@ def save_frames_from_audio_receiver(wavpath):
         webrtc_ctx = webrtc_streamer(
             key="sendonly-audio",
             mode=WebRtcMode.SENDONLY,
-            rtc_configuration={"iceServers": [{"urls": ["stun:stun.l.google.com:19305"]}]},
+            rtc_configuration={"iceServers": [{"urls": ["stun:stun.l.google.com:19302"]}]},
             media_stream_constraints=MEDIA_STREAM_CONSTRAINTS,
         )
 

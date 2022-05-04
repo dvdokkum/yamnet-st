@@ -27,7 +27,16 @@ MEDIA_STREAM_CONSTRAINTS = {
     },
 }
 
-st.title('Sound ID Demo')
+st.set_page_config(
+     page_title="dvd's sound id demo",
+     page_icon="🌽",
+     layout="wide",
+ )
+
+st.title("dvd's sound id demo")
+
+st.markdown("This is a quick and dirty implementation of Google's [yamnet](https://tfhub.dev/google/yamnet/1) deep net audio event classifier. It predicts 521 different sound sources, and was trained on [audioset](https://research.google.com/audioset/), a corpus of sounds from millions of youtube videos.")
+st.markdown("To get started open up the sidebar (on mobile: arrow button in top left) and either make a new recording or upload a file from your device. Afterwards, come back here to process the sound and see the model's prediction.")
 
 # Load the model.
 @st.cache
@@ -159,7 +168,7 @@ if file_to_process:
     # st.write(f'Size of the input: {len(wav_data)}')
     st.markdown("## :tada: Upload successful!")
     process = st.button("Click here to analyze audio!")
-else: st.write("<<< Please select some audio to process.")
+else: st.markdown("⬅️ **Please select some audio to process.**")
 
 if process == True:
     with st.spinner("processing"):
@@ -168,9 +177,9 @@ if process == True:
         scores_np = scores.numpy()
         spectrogram_np = spectrogram.numpy()
         infered_class = class_names[scores_np.mean(axis=0).argmax()]
-        st.markdown(f'The main sound detected is: **{infered_class}**.')
+        st.markdown('The main sound detected is:')
+        st.subheader(f'**{infered_class}**!')
         st.write("Here's some diagnostics and a timeline of all sounds detected.")
-        st.markdown("**[REFRESH]("")** the page to try again.")
 
         viz = plt.figure(figsize=(10, 6))
         plt.subplot(3,1,1)
@@ -196,3 +205,6 @@ if process == True:
         _ = plt.ylim(-0.5 + np.array([top_n, 0]))
 
         st.pyplot(viz)
+
+        st.markdown("**[REFRESH]("")** the page to try again.")
+        st.markdown("💡 Got an idea for real-world applications of sound identification tech? Tell [dvd](https://twitter.com/dvd).")

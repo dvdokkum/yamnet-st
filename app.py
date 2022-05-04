@@ -8,7 +8,7 @@ import matplotlib.pyplot as plt
 from scipy import signal
 from scipy.io import wavfile
 
-from streamlit_webrtc import webrtc_streamer, WebRtcMode, ClientSettings
+from streamlit_webrtc import webrtc_streamer, WebRtcMode
 import queue
 from pathlib import Path
 import time
@@ -80,12 +80,8 @@ def save_frames_from_audio_receiver(wavpath):
         webrtc_ctx = webrtc_streamer(
             key="sendonly-audio",
             mode=WebRtcMode.SENDONLY,
-            client_settings=ClientSettings(
-                rtc_configuration={
-                    "iceServers": [{"urls": ["stun:stun.l.google.com:19302"]}]
-                },
-                media_stream_constraints=MEDIA_STREAM_CONSTRAINTS,
-            ),
+            rtc_configuration={"iceServers": [{"urls": ["stun:stun.l.google.com:19302"]}]},
+            media_stream_constraints=MEDIA_STREAM_CONSTRAINTS,
         )
 
         if "audio_buffer" not in st.session_state:

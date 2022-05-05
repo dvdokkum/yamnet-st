@@ -207,4 +207,4 @@ if process == True:
         st.pyplot(viz)
 
         st.markdown("**[REFRESH]("")** the page to try again.")
-        st.markdown("💡 Got an idea for real-world applications of sound identification tech? Tell [dvd](https://twitter.com/dvd).")
+        #st.markdown("💡 Got an idea for real-world applications of sound identification tech? Tell [dvd](https://twitter.com/dvd).")
